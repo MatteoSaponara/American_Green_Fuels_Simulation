@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 2621598619117655879}
   - component: {fileID: 4155892421616178659}
   - component: {fileID: 5886214786710712311}
+  - component: {fileID: 5449738854607982048}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -305,3 +306,17 @@ MonoBehaviour:
   lookSensitivity: 2.5
   topLookLimit: -80
   bottomLookLimit: 80
+--- !u!114 &5449738854607982048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103007949909746960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff73d86eebf7484cb3b2b36b0d0cca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::game.PlayerInteracter
+  interactorSource: {fileID: 6044115187612871585}
+  interactRange: 2
