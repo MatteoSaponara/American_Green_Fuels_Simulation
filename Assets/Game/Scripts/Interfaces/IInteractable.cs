@@ -5,9 +5,9 @@ namespace game
     public interface IInteractable
     {
         // Prompt message for the UI
-        string InteractionPrompt { get; }
+        public string InteractionPrompt { get; }
 
         // Core execution logic
-        void Interact();
+        public void Interact();
     }
 }
