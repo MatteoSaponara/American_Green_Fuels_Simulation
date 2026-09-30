@@ -13,6 +13,8 @@ namespace game
 
         // Player input setup
         private PlayerControls controls;
+        // Is dialogue script active
+        private bool dialogueActive;
 
         private void Awake()
         {
@@ -29,29 +31,54 @@ namespace game
             controls.Player.Disable();
         }
 
-        // Dialogue box is not active by default
+        // Dialogue box is not active by default. Also connects dialogue finishing to EndDialouge.
         private void Start()
         {
-            Debug.Log("DialogueManager Start");
-
             dialogueBox.SetActive(false);
+
+            dialogue.onDialogueFinished += EndDialogue;
         }
 
         private void Update()
         {
             if (controls.Player.Interact.WasPressedThisFrame())
             {
-                Debug.Log("INTERACT DETECTED");
-                StartDialogue();
-            }
+                if (dialogueActive)
+                {
+                    // Fully types out line if button was pressed while typing
+                    if (dialogue.IsTyping)
+                    {
+                        dialogue.FinishLine();
+                    }
+                    // Goes to next line the current line is finished
+                    else
+                    {
+                        dialogue.NextLine();
+                    }
+                }
+            }   
         }
 
-        private void StartDialogue()
+        // Initiates dialgoue
+        private void StartDialogue(string[] newLines)
         {
-            Debug.Log("START DIALOGUE");
+            dialogue.SetLines(newLines);
 
+            dialogueActive = true;
             dialogueBox.SetActive(true);
             dialogue.StartDialogue();
+        }
+
+        // Disable dialogue UI
+        private void EndDialogue()
+        {
+            dialogueActive = false;
+            dialogueBox.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            dialogue.onDialogueFinished -= EndDialogue;
         }
     }
 }
