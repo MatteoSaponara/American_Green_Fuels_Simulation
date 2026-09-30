@@ -56,20 +56,15 @@ namespace game
                         dialogue.NextLine();
                     }
                 }
-                else
-                {
-                    StartDialogue();
-                }
             }   
         }
 
         // Initiates dialgoue
-        private void StartDialogue()
+        private void StartDialogue(string[] newLines)
         {
-            Debug.Log("START DIALOGUE");
+            dialogue.SetLines(newLines);
 
             dialogueActive = true;
-
             dialogueBox.SetActive(true);
             dialogue.StartDialogue();
         }

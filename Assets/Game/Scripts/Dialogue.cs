@@ -28,6 +28,12 @@ namespace game
             textComponent.text = string.Empty;
         }
 
+        // Sets the lines of dialogue
+        public void SetLines(string[] newLines)
+        {
+            lines = newLines;
+        }
+
         public void StartDialogue()
         {
             index = 0;
@@ -86,5 +92,7 @@ namespace game
                 onDialogueFinished?.Invoke();
             }
         }
+
+        
     }
 }
