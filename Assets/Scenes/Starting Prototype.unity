@@ -167,6 +167,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7169241555837899961, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
+      propertyPath: lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169241555837899961, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
+      propertyPath: 'lines.Array.data[2]'
+      value: Line numero tre
+      objectReference: {fileID: 0}
     - target: {fileID: 7493208475896971267, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
       propertyPath: m_Name
       value: Prototype Level
