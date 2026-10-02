@@ -60,7 +60,7 @@ namespace game
         }
 
         // Initiates dialgoue
-        private void StartDialogue(string[] newLines)
+        public void StartDialogue(string[] newLines)
         {
             dialogue.SetLines(newLines);
 
