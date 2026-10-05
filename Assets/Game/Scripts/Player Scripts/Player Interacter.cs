@@ -14,23 +14,14 @@ namespace game
         //[Tooltip("Layer of interactables.")]
         //[SerializeField] private LayerMask interactableLayer; Optional: Optimize by filtering layers
 
-        private PlayerControls controls;
-
-        private void Awake()
-        {
-            controls = new PlayerControls();
-        }
-
         private void OnEnable()
         {
-            controls.Player.Enable();
-            controls.Player.Interact.started += OnInteract;
+            SimulationManager.Instance.Controls.Player.Interact.started += OnInteract;
         }
 
         private void OnDisable()
         {
-            controls.Player.Interact.started -= OnInteract;
-            controls.Player.Disable();
+            SimulationManager.Instance.Controls.Player.Interact.started -= OnInteract;
         }
 
         private void OnInteract(InputAction.CallbackContext context)
