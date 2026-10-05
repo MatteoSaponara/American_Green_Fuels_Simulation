@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace game
 {
@@ -8,61 +9,57 @@ namespace game
         [Tooltip("Reference to the tablet UI.")]
         [SerializeField] private GameObject tabletUI;
 
-        private PlayerControls controls;
-
-        private void Awake()
-        {
-            controls = new PlayerControls();
-        }
-
-        private void OnEnable()
-        {
-            controls.Player.OpenTablet.performed += OpenTablet;
-            controls.UI.CloseTablet.performed += CloseTablet;
-
-            controls.Player.Enable();
-        }
-
-        private void OnDisable()
-        {
-            controls.Player.OpenTablet.performed -= OpenTablet;
-            controls.UI.CloseTablet.performed -= CloseTablet;
-
-            controls.Player.Disable();
-            controls.UI.Disable();
-        }
-
         private void Start()
         {
             tabletUI.SetActive(false);
+
+            SimulationManager.Instance.Controls.Player.OpenTablet.performed += OpenTablet;
+            SimulationManager.Instance.Controls.UI.CloseTablet.performed += CloseTablet;
         }
 
-        private void OpenTablet(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        private void OnDestroy()
         {
+            SimulationManager.Instance.Controls.Player.OpenTablet.performed -= OpenTablet;
+            SimulationManager.Instance.Controls.UI.CloseTablet.performed -= CloseTablet;
+        }
+
+        private void OpenTablet(InputAction.CallbackContext context)
+        {
+            Debug.Log("OPEN TABLET INPUT DETECTED");
+
             tabletUI.SetActive(true);
 
-            controls.Player.Disable();
-            controls.UI.Enable();
+            SimulationManager.Instance.Controls.Player.Disable();
+            SimulationManager.Instance.Controls.UI.Enable();
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
-        private void CloseTablet(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        private void CloseTablet(InputAction.CallbackContext context)
         {
-            CloseTablet();
-        }
+            Debug.Log("CLOSE TABLET INPUT DETECTED");
 
-        private void CloseTablet()
-        {
             tabletUI.SetActive(false);
 
-            controls.UI.Disable();
-            controls.Player.Enable();
+            SimulationManager.Instance.Controls.UI.Disable();
+            SimulationManager.Instance.Controls.Player.Enable();
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         public void CompleteTask()
         {
             SimulationManager.Instance.TryCompleteTask();
 
-            CloseTablet();
+            tabletUI.SetActive(false);
+
+            SimulationManager.Instance.Controls.UI.Disable();
+            SimulationManager.Instance.Controls.Player.Enable();
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }

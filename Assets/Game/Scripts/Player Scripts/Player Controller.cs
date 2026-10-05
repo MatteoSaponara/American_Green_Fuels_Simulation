@@ -23,7 +23,6 @@ namespace game
 
         // References
         private CharacterController characterController; // Character controller from the player object
-        private PlayerControls controls; // Generated C# class from input assest
 
         // Input values
         private Vector2 movementInput;
@@ -36,18 +35,8 @@ namespace game
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
-            controls = new PlayerControls();            // create new instance of the Input Action Asset C# class
         }
 
-        private void OnEnable()
-        {
-            controls.Player.Enable();                   // Enable input action
-        }
-
-        private void OnDisable()
-        {
-            controls.Player.Disable();                  // Disable input action
-        }
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked; // Locks cursor to center of the screen
@@ -57,8 +46,8 @@ namespace game
         private void Update()
         {
             // Read Vector2 values from inputs
-            movementInput = controls.Player.Move.ReadValue<Vector2>();
-            lookInput = controls.Player.Look.ReadValue<Vector2>();
+            movementInput = SimulationManager.Instance.Controls.Player.Move.ReadValue<Vector2>();
+            lookInput = SimulationManager.Instance.Controls.Player.Look.ReadValue<Vector2>();
 
             HandleRotation();
             HandleMovement();

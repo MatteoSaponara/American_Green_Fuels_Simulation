@@ -11,6 +11,7 @@ namespace game
         // Later pause functionality
         public bool IsPaused;
         public DialogueManager DialogueManager => dialogueManager;
+        public PlayerControls Controls => controls;
 
         [Header("References")]
         [Tooltip("Reference to the dialogue manager.")]
@@ -22,6 +23,9 @@ namespace game
 
         [Tooltip("Starting lines of dialouge when the simulation first starts.")]
         [SerializeField] private string[] initialDialogue;
+        
+        // 
+        private PlayerControls controls;
 
         private bool currentTaskCompleted;
 
@@ -35,12 +39,16 @@ namespace game
             {
                 Debug.LogError("Two instances of Simulation Manager");
             }
+
+            controls = new PlayerControls();
+
             DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
         {
             currentTaskCompleted = false;
+            controls.Player.Enable(); // Emables the Player Controls
             dialogueManager.StartDialogue(initialDialogue);
         }
 
