@@ -167,29 +167,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5420977332656841204, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5420977332656841204, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
-      propertyPath: m_Color.g
-      value: 0.6792453
-      objectReference: {fileID: 0}
-    - target: {fileID: 5420977332656841204, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
-      propertyPath: m_Color.r
-      value: 0.24428998
-      objectReference: {fileID: 0}
     - target: {fileID: 7493208475896971267, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
       propertyPath: m_Name
       value: Prototype Level
-      objectReference: {fileID: 0}
-    - target: {fileID: 9033004155941085859, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
-      propertyPath: initialDialogue.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9033004155941085859, guid: ee4f8bc0b686e05459844b4c79786444, type: 3}
-      propertyPath: 'initialDialogue.Array.data[0]'
-      value: Rotate the cube.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
